@@ -1,4 +1,44 @@
+import SelectDropdown from "../SelectDropDown/SelectDropdown"
+import { SearchIcon } from '@heroicons/react/outline'
+import SortItems from "../Sort/SortItems";
+
 const people = [
+    {
+        name: 'Lindsay Walton',
+        title: 'Front-end Developer',
+        department: 'Optimization',
+        email: 'lindsay.walton@example.com',
+        role: 'Member',
+        image:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Lindsay Walton',
+        title: 'Front-end Developer',
+        department: 'Optimization',
+        email: 'lindsay.walton@example.com',
+        role: 'Member',
+        image:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Lindsay Walton',
+        title: 'Front-end Developer',
+        department: 'Optimization',
+        email: 'lindsay.walton@example.com',
+        role: 'Member',
+        image:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Lindsay Walton',
+        title: 'Front-end Developer',
+        department: 'Optimization',
+        email: 'lindsay.walton@example.com',
+        role: 'Member',
+        image:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
     {
         name: 'Lindsay Walton',
         title: 'Front-end Developer',
@@ -13,15 +53,24 @@ const people = [
 
 function TestimonialTable(): JSX.Element {
     return (
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8 max-h-[791px] min-h-[500px] ">
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full pt-2 pb-8 align-middle md:px-6 lg:px-8 ">
                         <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-xl shadow-gray-200">
-                            <div className="min-w-full flex justify-between items-center h-[60px] border-b border-gray ">
-                                <select className="bg-[#F0F3F9] w-[10%] h-[40px] rounded-[5px] ">Icon</select>
-                                <input type="text" placeholder="search here..." className="bg-[#F0F3F9] w-[20%] max-h-[70%] h-[40px] rounded-[5px]" />
-                                <select className="bg-[#F0F3F9] w-[20%] max-h-[70%] h-[40px] rounded-[5px]">Sort by</select>
+                            <div className="min-w-full flex items-center h-[60px] border-b border-gray ">
+                                <div className="flex items-center gap-2 w-full">
+                                    <SelectDropdown />
+                                    <div className="relative flex bg-[#F0F3F9] w-[35%] max-h-[70%] h-[40px] rounded-[5px] px-6">
+                                        <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
+                                            <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
+                                        </span>
+                                        <input type="text" placeholder="search here..." className="bg-[#F0F3F9] ml-4 w-full outline-none" />
+                                    </div>
+                                </div>
+                                <div className="w-[30%] mr-4 min-h-full flex items-center">
+                                    <SortItems />
+                                </div>
                             </div>
 
                             <table className="min-w-full divide-y divide-gray-300">
