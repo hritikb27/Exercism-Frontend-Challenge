@@ -19,9 +19,9 @@ export default function SortItems() {
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <div className="mt-1 relative w-full max-h-[70%] h-[40px] mb-2 ">
+          <div className="mt-1 relative w-full max-h-[70%] h-[50px] mb-2 ">
             <Listbox.Button className="relative w-full h-full bg-[#F0F3F9] rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default sm:text-sm">
-              <span className="block truncate">{selected.name}</span>
+              <span className="block truncate text-[#5C5589] ">{selected.name}</span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <ChevronDownIcon className="h-7 w-7 text-gray-500 mr-2" aria-hidden="true" />
               </span>

@@ -29,7 +29,12 @@ interface Testimonial {
     id: number
 }
 
-function TestimonialTable(): JSX.Element {
+type TestimonialTableType = {
+    selectedTrack: Track,
+    setSelectedTrack: React.Dispatch<React.SetStateAction<Track>>;
+}
+
+function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableType): JSX.Element {
     const [testimonials, setTestimonials] = useState<Testimonial[]>();
     const [searchValue, setSearchValue] = useState<string>();
     const [exerciseFilter, setExerciseFilter] = useState<string>();
@@ -49,8 +54,18 @@ function TestimonialTable(): JSX.Element {
         getTestimonials();
     },[])
 
+    // Fetch/Filter the data with the specified track selected by the user
+    useEffect(()=>{
+        getFilteredTestimonials();
+        
+    },[trackFilter])
+
     const getFilteredTestimonials = async()=> {
         const getTestimonials = await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
+        .then(res=> res.json())
+        .then(data=>{
+            setTestimonials(data.testimonials.results);
+        })
     }
 
     const handleExerciseChange = (value: string) => {
@@ -65,14 +80,14 @@ function TestimonialTable(): JSX.Element {
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full pt-2 pb-8 align-middle md:px-6 lg:px-8 ">
                         <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-xl shadow-gray-200">
-                            <div className="min-w-full flex items-center h-[60px] border-b border-gray ">
+                            <div className="min-w-full flex items-center h-[80px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full ml-2">
-                                    <SelectDropdown />
-                                    <div className="relative flex bg-[#F0F3F9] min-w-[35%] max-h-[70%] h-[40px] ml-3 rounded-[5px] px-6">
+                                    <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
+                                    <div className="relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6">
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>
-                                        <input type="text" value={searchValue} onChange={(e)=>handleExerciseChange(e.target.value)} placeholder="search here..." className="bg-[#F0F3F9] ml-4 w-full outline-none" />
+                                        <input type="text" value={searchValue} onChange={(e)=>handleExerciseChange(e.target.value)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
                                     </div>
                                 </div>
                                 <div className="min-w-[30%] mr-4 min-h-full flex items-center">
@@ -86,7 +101,7 @@ function TestimonialTable(): JSX.Element {
                                     {testimonials && testimonials.map((testimonial) => (
                                         <tr key={testimonial.id}>
                                             <td>
-                                                <div className="w-11 ml-4">
+                                                <div className="w-11 ml-5">
                                                     <img src={testimonial.track.icon_url} className="size-cover" />
                                                 </div>
                                             </td>
