@@ -14,7 +14,7 @@ const people = [
   
 ]
 
-interface Track {
+export interface Track {
     title: string,
     icon_url: string,
     num_exercises: number,
@@ -35,7 +35,6 @@ export default function SelectDropdown() {
         .then(data=>data.json())
         .then(res=> {
             setTracks(res.tracks)
-            console.log(res.tracks)
         });
       }
 

@@ -1,6 +1,8 @@
 import SelectDropdown from "../SelectDropDown/SelectDropdown"
-import { SearchIcon } from '@heroicons/react/outline'
+import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import SortItems from "../Sort/SortItems";
+import { useEffect, useState } from "react";
+import { Track } from "../SelectDropDown/SelectDropdown";
 
 const people = [
     {
@@ -11,47 +13,52 @@ const people = [
         role: 'Member',
         image:
             'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    // More people...
+    }
 ]
 
+type mentor = {
+    avatar_url: string,
+    handle: string
+}
+
+interface Testimonial {
+    content: string,
+    created_at: string,
+    mentor: mentor,
+    track: Track,
+    id: number
+}
+
 function TestimonialTable(): JSX.Element {
+    const [testimonials, setTestimonials] = useState<Testimonial[]>();
+    const [searchValue, setSearchValue] = useState<string>();
+    const [exerciseFilter, setExerciseFilter] = useState<string>();
+    const [trackFilter, setTrackFilter] = useState<string>();
+    const [orderFilter, setOrderFilter] = useState<string>();
+
+    useEffect(()=>{
+        const getTestimonials = async() => {
+            const Testimonials = await fetch("https://exercism.org/api/v2/hiring/testimonials")
+            .then(res=>res.json())
+            .then(data=>{
+                setTestimonials(data.testimonials.results)
+                console.log(data.testimonials)
+            })
+        }
+
+        getTestimonials();
+    },[])
+
+    const getFilteredTestimonials = async()=> {
+        const getTestimonials = await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
+    }
+
+    const handleExerciseChange = (value: string) => {
+        setSearchValue(value);
+        setExerciseFilter(value);
+        getFilteredTestimonials();
+    }
+
     return (
         <div className="px-4 sm:px-6 lg:px-8 max-h-[791px] min-h-[500px] ">
             <div className="mt-8 flex flex-col">
@@ -65,7 +72,7 @@ function TestimonialTable(): JSX.Element {
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>
-                                        <input type="text" placeholder="search here..." className="bg-[#F0F3F9] ml-4 w-full outline-none" />
+                                        <input type="text" value={searchValue} onChange={(e)=>handleExerciseChange(e.target.value)} placeholder="search here..." className="bg-[#F0F3F9] ml-4 w-full outline-none" />
                                     </div>
                                 </div>
                                 <div className="min-w-[30%] mr-4 min-h-full flex items-center">
@@ -76,32 +83,31 @@ function TestimonialTable(): JSX.Element {
                             <table className="min-w-full divide-y divide-gray-300">
 
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {people.map((person) => (
-                                        <tr key={person.email}>
+                                    {testimonials && testimonials.map((testimonial) => (
+                                        <tr key={testimonial.id}>
+                                            <td>
+                                                <div>
+                                                    <img src={testimonial.track.icon_url} />
+                                                </div>
+                                            </td>
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                 <div className="flex items-center">
                                                     <div className="h-10 w-10 flex-shrink-0">
-                                                        <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
+                                                        <img className="h-10 w-10 rounded-full" src={testimonial.mentor.avatar_url} alt="" />
                                                     </div>
                                                     <div className="ml-4">
-                                                        <div className="font-medium text-gray-900">{person.name}</div>
-                                                        <div className="text-gray-500">{person.email}</div>
+                                                        <div className="font-medium text-gray-900">{testimonial.mentor.handle}</div>
+                                                        {/* <div className="text-gray-500">{person.email}</div> */}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{person.title}</div>
-                                                <div className="text-gray-500">{person.department}</div>
+                                                <div className="text-gray-900">{testimonial.content}</div>
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                                                    Active
-                                                </span>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{testimonial.created_at}</td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                    Edit<span className="sr-only">, {person.name}</span>
+                                                <a href="#" className="text-[#5C5589]">
+                                                    <ChevronRightIcon className="h-7 w-7" /> <span className="sr-only">, {testimonial.mentor.handle}</span>
                                                 </a>
                                             </td>
                                         </tr>
