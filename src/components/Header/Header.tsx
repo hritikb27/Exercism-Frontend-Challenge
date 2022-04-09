@@ -1,21 +1,16 @@
 import React from "react";
-import Mentoring from "../../assets/Mentoring.png"
-import Tracks from "../../assets/Tracks.png"
-import Contribute from "../../assets/Contribute.png"
-import DashboardImg from "../../assets/Dashboard.png"
-import DashboardImgBG from "../../assets/DashboardImgBG.png"
-import ChatEmoji from "../../assets/ChatEmoji.png"
-import NotificationBell from "../../assets/alarm-bell.png"
-import badge from "../../assets/badge.png"
-import profilepic from "../../assets/profilepic.png"
-import NavDots from "../../assets/NavDots.png"
-import { AiOutlineDashboard } from "react-icons/ai";
-import { GiLadder } from "react-icons/gi";
-import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { FaCode } from "react-icons/fa";
-import { url } from "inspector";
+import Mentoring from "../../assets/Header/Mentoring.png"
+import Tracks from "../../assets/Header/Tracks.png"
+import Contribute from "../../assets/Header/Contribute.png"
+import DashboardImg from "../../assets/Header/Dashboard.png"
+import DashboardImgBG from "../../assets/Header/DashboardImgBG.png"
+import ChatEmoji from "../../assets/Header/ChatEmoji.png"
+import NotificationBell from "../../assets/Header/alarm-bell.png"
+import badge from "../../assets/Header/badge.png"
+import profilepic from "../../assets/Header/profilepic.png"
+import NavDots from "../../assets/Header/NavDots.png"
 
-function Header() {
+function Header(): JSX.Element {
   return (
     <div className="border-b border-gray-200">
     <div className="px-4 sm:px-6 lg:px-8 bg-white w-[75%] mx-auto h-[64px] flex justify-between items-center">
