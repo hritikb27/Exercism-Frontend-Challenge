@@ -66,7 +66,7 @@ function TestimonialTable(): JSX.Element {
                     <div className="inline-block min-w-full pt-2 pb-8 align-middle md:px-6 lg:px-8 ">
                         <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-xl shadow-gray-200">
                             <div className="min-w-full flex items-center h-[60px] border-b border-gray ">
-                                <div className="flex items-center gap-2 w-full">
+                                <div className="flex items-center gap-2 w-full ml-2">
                                     <SelectDropdown />
                                     <div className="relative flex bg-[#F0F3F9] min-w-[35%] max-h-[70%] h-[40px] ml-3 rounded-[5px] px-6">
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
@@ -86,11 +86,11 @@ function TestimonialTable(): JSX.Element {
                                     {testimonials && testimonials.map((testimonial) => (
                                         <tr key={testimonial.id}>
                                             <td>
-                                                <div>
-                                                    <img src={testimonial.track.icon_url} />
+                                                <div className="w-11 ml-4">
+                                                    <img src={testimonial.track.icon_url} className="size-cover" />
                                                 </div>
                                             </td>
-                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                            <td className="whitespace-nowrap pl-4 pr-3 text-sm sm:pl-6">
                                                 <div className="flex items-center">
                                                     <div className="h-10 w-10 flex-shrink-0">
                                                         <img className="h-10 w-10 rounded-full" src={testimonial.mentor.avatar_url} alt="" />
@@ -101,11 +101,10 @@ function TestimonialTable(): JSX.Element {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="text-gray-900">{testimonial.content}</div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{testimonial.created_at}</td>
-                                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                            <div className="truncate ml-20 text-gray-900 max-w-[400px] ">{testimonial.content}</div>
+                                            
+                                            <td className="whitespace-nowrap px-3 text-sm text-gray-500">{testimonial.created_at}</td>
+                                            <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium">
                                                 <a href="#" className="text-[#5C5589]">
                                                     <ChevronRightIcon className="h-7 w-7" /> <span className="sr-only">, {testimonial.mentor.handle}</span>
                                                 </a>
