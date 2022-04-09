@@ -5,6 +5,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline'
 
 const people = [
   { id: 1, name: 'Sort by Most Recent' },
+  { id: 1, name: 'Sort by Oldest' },
 ]
 
 function classNames(...classes: any) {
