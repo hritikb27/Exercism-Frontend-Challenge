@@ -9,14 +9,155 @@ import _ from "lodash"
 
 const people = [
     {
-        name: 'Lindsay Walton',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'lindsay.walton@example.com',
-        role: 'Member',
-        image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    }
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 1
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 2,
+        },
+        id: 2
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 3
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 4
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 5
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 6
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 7
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 8
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 9
+    },
+    {
+        content: "I got fantastic and timely feedback from him. He was super help...",
+        created_at: "2020-08-14T10:37:34.000Z",
+        mentor:{
+            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
+            handle: "elektronaut0815"
+        },
+        track:{
+            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
+            slug: "rust",
+            title: "Rust",
+            num_exercises: 1,
+        },
+        id: 10
+    },
 ]
 
 const pageSize = 10;
@@ -47,29 +188,34 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
     const [orderFilter, setOrderFilter] = useState<string>();
     const [pageCount, setPageCount] = useState<number[]>([1]);
     const [paginatedTestimonials, setPaginatedTestimonials] = useState<Testimonial[]>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [inputActive, setInputActive] = useState<boolean>();
 
     useEffect(() => {
         const getTestimonials = async () => {
+            setIsLoading(true);
+            setPaginatedTestimonials(people);
             const Testimonials = await fetch("https://exercism.org/api/v2/hiring/testimonials")
                 .then(res => res.json())
                 .then(data => {
                     setTestimonials(data.testimonials.results)
                     setPaginatedTestimonials(_(data.testimonials.results).slice(0).take(pageSize).value());
+                    setIsLoading(false);
+                    const count = (data.testimonials.results && data.testimonials.results.length>1) ? Math.ceil(data.testimonials.results.length / pageSize) : 0;
+                    console.log('Count: ', count)
+                    const pages = _.range(1, count+1);
+                    setPageCount(pages);
                 })
         }
 
         getTestimonials();
-        const count = testimonials ? Math.ceil(testimonials.length / pageSize) : 0;
-        const pages = _.range(1, count+1);
-        setPageCount(pages);
     }, [])
 
     // Fetch/Filter the data with the specified track selected by the user
     useEffect(() => {
+        setIsLoading(true)
+        setPaginatedTestimonials(people);
         getFilteredTestimonials();
-        const count = testimonials ? Math.ceil(testimonials.length / pageSize) : 0;
-        const pages = _.range(1, count+1);
-        setPageCount(pages);
 
     }, [trackFilter])
 
@@ -78,7 +224,13 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
             .then(res => res.json())
             .then(data => {
                 setTestimonials(data.testimonials.results);
+                console.log("DATA: ", data.testimonials.results)
                 setPaginatedTestimonials(_(data.testimonials.results).slice(0).take(pageSize).value());
+                const count = (data.testimonials.results && data.testimonials.results.length>1) ? Math.ceil(data.testimonials.results.length / pageSize) : 0;
+                console.log('Updated Count: ', count)
+                const pages = _.range(1, count+1);
+                setPageCount(pages);
+                setIsLoading(false);
             })
 
     }
@@ -104,11 +256,11 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                             <div className="min-w-full flex items-center h-[80px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full ml-2">
                                     <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
-                                    <div className="relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6">
+                                    <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border-[#2E57E8]"}>
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>
-                                        <input type="text" value={searchValue} onChange={(e) => handleExerciseChange(e.target.value)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
+                                        <input type="text" value={searchValue} onChange={(e) => handleExerciseChange(e.target.value)} onFocus={()=>setInputActive(true)} onBlur={()=>setInputActive(false)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
                                     </div>
                                 </div>
                                 <div className="min-w-[30%] mr-4 min-h-full flex items-center">
@@ -120,7 +272,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
 
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
-                                        <tr key={testimonial.id}>
+                                        <tr key={testimonial.id} className={isLoading?"blur-md":""}>
                                             <td>
                                                 <div className="w-11 ml-5">
                                                     <img src={testimonial.track.icon_url} className="size-cover" />
