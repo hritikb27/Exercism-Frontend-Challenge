@@ -16,8 +16,8 @@ function TestimonialTable(): JSX.Element {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <div className="inline-block min-w-full pt-2 pb-8 align-middle md:px-6 lg:px-8 ">
+                        <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-xl shadow-gray-200">
                             <div className="min-w-full flex justify-between items-center h-[60px] border-b border-gray ">
                                 <select className="bg-[#F0F3F9] w-[10%] h-[40px] rounded-[5px] ">Icon</select>
                                 <input type="text" placeholder="search here..." className="bg-[#F0F3F9] w-[20%] max-h-[70%] h-[40px] rounded-[5px]" />

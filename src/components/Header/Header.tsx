@@ -13,8 +13,8 @@ import NavDots from "../../assets/Header/NavDots.png"
 function Header(): JSX.Element {
   return (
     <div className="border-b border-gray-200">
-    <div className="px-4 sm:px-6 lg:px-8 bg-white w-[75%] mx-auto h-[64px] flex justify-between items-center">
-        <section className="flex gap-6">
+    <div className="px-4 sm:px-6 lg:px-8 bg-white max-w-[1440px] mx-auto h-[64px] flex justify-between items-center">
+        <section className="flex gap-2 xl:gap-6 text-sm">
             <img src="https://d24y9kuxp2d7l2.cloudfront.net/assets/icons/exercism-with-logo-black-b427c06c6a068ba9f391734115e4d22dfa876d1d.svg" className="cursor-pointer mr-2" />
             <div className="w-full flex items-center gap-1 cursor-pointer">
                 <div style={{backgroundImage: `url(${DashboardImgBG})`, backgroundRepeat: "no-repeat", backgroundSize: "cover"}} className="flex items-center justify-center w-[62px] h-[62px] ">                    
@@ -42,7 +42,7 @@ function Header(): JSX.Element {
             </div>
         </section>
 
-        <section className="flex items-center gap-12 ">
+        <section className="flex items-center gap-4 lg:gap-6 xl:gap-12 ">
             <div className="cursor-pointer">
                 <img src={ChatEmoji} />
             </div>

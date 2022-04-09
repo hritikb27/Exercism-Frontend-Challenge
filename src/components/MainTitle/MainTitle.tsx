@@ -6,8 +6,8 @@ function MainTitle(): JSX.Element {
         <div className="mt-10 flex flex-col items-center justify-center gap-4">
             <img src={Badge} />
             <div className="flex w-[50%] gap-5 justify-center">
-                <p className="text-4xl font-bold mb-2">Testimonials I've left</p>
-                <div className="w-[6%] h-[34px] border border-gray-300 rounded-full flex items-center justify-center font-normal">
+                <p className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-2">Testimonials I've left</p>
+                <div className="w-[12%] 2xl:w-[7%] h-[34px] border border-gray-300 rounded-full flex items-center justify-center font-normal">
                     <p>47</p>
                 </div>
             </div>
