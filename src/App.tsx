@@ -4,9 +4,11 @@ import TestimonialTable from "./components/TestimonialTable/TestimonialTable";
 
 function App() {
   return (
-    <div className="bg-white w-full h-full">
+    <div className="bg-white w-full mx-auto h-full">
       <Header />
-      <TestimonialTable />
+      <div className="w-[75%] mx-auto ">
+        <TestimonialTable />
+      </div>
     </div>
   );
 }
