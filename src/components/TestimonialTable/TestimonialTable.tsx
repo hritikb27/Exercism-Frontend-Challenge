@@ -1,8 +1,11 @@
 import SelectDropdown from "../SelectDropDown/SelectDropdown"
 import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 import SortItems from "../Sort/SortItems";
 import { useEffect, useState } from "react";
 import { Track } from "../SelectDropDown/SelectDropdown";
+import Pagination from "../Pagination/Pagination";
+import _ from "lodash"
 
 const people = [
     {
@@ -15,6 +18,8 @@ const people = [
             'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     }
 ]
+
+const pageSize = 10;
 
 type mentor = {
     avatar_url: string,
@@ -34,38 +39,48 @@ type TestimonialTableType = {
     setSelectedTrack: React.Dispatch<React.SetStateAction<Track>>;
 }
 
-function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableType): JSX.Element {
+function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableType): JSX.Element {
     const [testimonials, setTestimonials] = useState<Testimonial[]>();
     const [searchValue, setSearchValue] = useState<string>();
     const [exerciseFilter, setExerciseFilter] = useState<string>();
     const [trackFilter, setTrackFilter] = useState<string>();
     const [orderFilter, setOrderFilter] = useState<string>();
+    const [pageCount, setPageCount] = useState<number[]>([1]);
+    const [paginatedTestimonials, setPaginatedTestimonials] = useState<Testimonial[]>();
 
-    useEffect(()=>{
-        const getTestimonials = async() => {
+    useEffect(() => {
+        const getTestimonials = async () => {
             const Testimonials = await fetch("https://exercism.org/api/v2/hiring/testimonials")
-            .then(res=>res.json())
-            .then(data=>{
-                setTestimonials(data.testimonials.results)
-                console.log(data.testimonials)
-            })
+                .then(res => res.json())
+                .then(data => {
+                    setTestimonials(data.testimonials.results)
+                    setPaginatedTestimonials(_(data.testimonials.results).slice(0).take(pageSize).value());
+                })
         }
 
         getTestimonials();
-    },[])
+        const count = testimonials ? Math.ceil(testimonials.length / pageSize) : 0;
+        const pages = _.range(1, count+1);
+        setPageCount(pages);
+    }, [])
 
     // Fetch/Filter the data with the specified track selected by the user
-    useEffect(()=>{
+    useEffect(() => {
         getFilteredTestimonials();
-        
-    },[trackFilter])
+        const count = testimonials ? Math.ceil(testimonials.length / pageSize) : 0;
+        const pages = _.range(1, count+1);
+        setPageCount(pages);
 
-    const getFilteredTestimonials = async()=> {
-        const getTestimonials = await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
-        .then(res=> res.json())
-        .then(data=>{
-            setTestimonials(data.testimonials.results);
-        })
+    }, [trackFilter])
+
+    const getFilteredTestimonials = async () => {
+         await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
+            .then(res => res.json())
+            .then(data => {
+                setTestimonials(data.testimonials.results);
+                setPaginatedTestimonials(_(data.testimonials.results).slice(0).take(pageSize).value());
+            })
+
     }
 
     const handleExerciseChange = (value: string) => {
@@ -73,6 +88,12 @@ function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableTyp
         setExerciseFilter(value);
         getFilteredTestimonials();
     }
+
+     const handlePagination = (pageNo: number)=> {
+        const startIndex = (pageNo - 1) * pageSize;
+        const paginatedPosts = _(testimonials).slice(startIndex).take(pageSize).value();
+        setPaginatedTestimonials(paginatedPosts);
+     }
 
     return (
         <div className="px-4 sm:px-6 lg:px-8 max-h-[791px] min-h-[500px] ">
@@ -87,7 +108,7 @@ function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableTyp
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>
-                                        <input type="text" value={searchValue} onChange={(e)=>handleExerciseChange(e.target.value)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
+                                        <input type="text" value={searchValue} onChange={(e) => handleExerciseChange(e.target.value)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
                                     </div>
                                 </div>
                                 <div className="min-w-[30%] mr-4 min-h-full flex items-center">
@@ -98,7 +119,7 @@ function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableTyp
                             <table className="min-w-full divide-y divide-gray-300">
 
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {testimonials && testimonials.map((testimonial) => (
+                                    {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
                                         <tr key={testimonial.id}>
                                             <td>
                                                 <div className="w-11 ml-5">
@@ -117,7 +138,7 @@ function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableTyp
                                                 </div>
                                             </td>
                                             <div className="truncate ml-20 text-gray-900 max-w-[400px] ">{testimonial.content}</div>
-                                            
+
                                             <td className="whitespace-nowrap px-3 text-sm text-gray-500">{testimonial.created_at}</td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium">
                                                 <a href="#" className="text-[#5C5589]">
@@ -128,6 +149,7 @@ function TestimonialTable({selectedTrack, setSelectedTrack}: TestimonialTableTyp
                                     ))}
                                 </tbody>
                             </table>
+                            <Pagination pageCount={pageCount} handlePagination={handlePagination} />
                         </div>
                     </div>
                 </div>
