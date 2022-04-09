@@ -61,14 +61,14 @@ function TestimonialTable(): JSX.Element {
                             <div className="min-w-full flex items-center h-[60px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full">
                                     <SelectDropdown />
-                                    <div className="relative flex bg-[#F0F3F9] w-[35%] max-h-[70%] h-[40px] rounded-[5px] px-6">
+                                    <div className="relative flex bg-[#F0F3F9] min-w-[35%] max-h-[70%] h-[40px] ml-3 rounded-[5px] px-6">
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>
                                         <input type="text" placeholder="search here..." className="bg-[#F0F3F9] ml-4 w-full outline-none" />
                                     </div>
                                 </div>
-                                <div className="w-[30%] mr-4 min-h-full flex items-center">
+                                <div className="min-w-[30%] mr-4 min-h-full flex items-center">
                                     <SortItems />
                                 </div>
                             </div>
