@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 
 const sortItems = [

@@ -1,20 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import Header from "./components/Header/Header";
 import MainTitle from "./components/MainTitle/MainTitle";
 import TestimonialTable from "./components/TestimonialTable/TestimonialTable";
-import { Track } from './components/SelectDropDown/SelectDropdown';
 
 
 function App() {
-  const [track, setTrack] = useState<Track>({
-    title: 'string',
-    icon_url: 'string',
-    num_exercises: 1,
-    slug: 'string',
-  });
-
-  const [searchValue, setSearchValue] = useState<string>("");
-
   return (
       <div className="bg-white w-full mx-auto h-full">
         <div className="sticky top-0  w-full border-b border-gray-200">
@@ -22,7 +12,7 @@ function App() {
         </div>
         <div className="max-w-[1440px] min-w-[80%] mx-auto ">
           <MainTitle />
-          <TestimonialTable selectedTrack={track} setSelectedTrack={setTrack} searchValue={searchValue} setSearchValue={setSearchValue} />
+          <TestimonialTable />
         </div>
       </div>
   );

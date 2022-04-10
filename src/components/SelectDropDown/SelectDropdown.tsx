@@ -1,18 +1,7 @@
-import { Fragment, useEffect, useState, useContext } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { CheckIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
-import SelectDropMainImg from "../../assets/Table/SelectDropMain.png"
-
-const people = [
-  {
-    id: 1,
-    name: 'Wade Cooper',
-    icon_url:
-      SelectDropMainImg,
-  },
-  
-]
 
 export interface Track {
     title: string,
@@ -36,7 +25,7 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
 
   useEffect(()=>{
       const getTracks = async()=>{
-        const fetchTracks = await fetch('https://exercism.org/api/v2/tracks')
+        await fetch('https://exercism.org/api/v2/tracks')
         .then(data=>data.json())
         .then(res=> {
             console.log(res.tracks)

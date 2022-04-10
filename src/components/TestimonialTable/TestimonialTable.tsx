@@ -176,17 +176,17 @@ interface Testimonial {
     id: number
 }
 
-type TestimonialTableType = {
-    selectedTrack: Track,
-    setSelectedTrack: React.Dispatch<React.SetStateAction<Track>>,
-    searchValue: string,
-    setSearchValue: React.Dispatch<React.SetStateAction<string>>,
-}
-
-function TestimonialTable({ selectedTrack, setSelectedTrack, searchValue, setSearchValue }: TestimonialTableType): JSX.Element {
+function TestimonialTable(): JSX.Element {
     const [testimonials, setTestimonials] = useState<Testimonial[]>();
     const [exerciseFilter, setExerciseFilter] = useState<string>();
+    const [selectedTrack, setSelectedTrack] = useState<Track>({
+        title: 'string',
+        icon_url: 'string',
+        num_exercises: 1,
+        slug: 'string',
+    });
     const [trackFilter, setTrackFilter] = useState<string>();
+    const [searchValue, setSearchValue] = useState<string>("")
     const [orderFilter, setOrderFilter] = useState<string>("");
     const [pageCount, setPageCount] = useState<number[]>([1]);
     const [paginatedTestimonials, setPaginatedTestimonials] = useState<Testimonial[]>();
