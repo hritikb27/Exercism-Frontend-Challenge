@@ -2,12 +2,12 @@ import SelectDropdown from "../SelectDropDown/SelectDropdown"
 import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 import SortItems from "../Sort/SortItems";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Track } from "../SelectDropDown/SelectDropdown";
 import Pagination from "../Pagination/Pagination";
 import _ from "lodash";
 import TimeFormat from "./TimeFormat";
-
+import { RotatingLines } from  'react-loader-spinner'
 
 const people = [
     {
@@ -271,10 +271,18 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                             </div>
 
                             <table className="min-w-full divide-y divide-gray-300">
-
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
-                                        <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] "}>
+                                    
+                                    {isLoading &&
+                                        <div className="relative min-w-full ml-[380%] blur-none z-10"><RotatingLines
+                                        width="100"
+                                        strokeColor="#6495ED"
+                                        strokeWidth="1"
+                                        animationDuration="2" 
+                                    /></div>
+                                    }
+                                    {paginatedTestimonials && paginatedTestimonials.map((testimonial,index) => (
+                                        <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] z-1"}>
                                             <td>
                                                 <div className="w-11 ml-5">
                                                     <img src={testimonial.track.icon_url} className="size-cover" />
