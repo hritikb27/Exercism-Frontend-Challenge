@@ -1,8 +1,8 @@
-import SelectDropdown from "../SelectDropDown/SelectDropdown"
+import SelectDropdown from "../TracksDropDown/TracksDropdown"
 import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import SortItems from "../Sort/SortItems";
 import { useEffect, useState } from "react";
-import { Track } from "../SelectDropDown/SelectDropdown";
+import { Track } from "../TracksDropDown/TracksDropdown";
 import Pagination from "../Pagination/Pagination";
 import _ from "lodash";
 import TimeFormat from "./TimeFormat";
@@ -84,26 +84,27 @@ function TestimonialTable(): JSX.Element {
             })
 
     }
+    
+    const handleExerciseChange = (value: string) => {
+        setSearchValue(value);
+        setExerciseFilter(value);
+        if(timeoutID)clearTimeout(timeoutID);
+        callFetcher();
+    }
+    
 
     let timeoutID:any;
-    
+
     // SetTimout gets cancelled when user again changes the search value under 1.5sec resulting in fewer api calls
     const callFetcher = ()=> timeoutID = setTimeout(()=>{
         getFilteredTestimonials();
     },1500);
 
-    const handleExerciseChange = (value: string) => {
-        setSearchValue(value);
-        setExerciseFilter(value);
-        clearTimeout(timeoutID);
-        callFetcher();
-    }
-
-     const handlePagination = (pageNo: number)=> {
+    const handlePagination = (pageNo: number)=> {
         const startIndex = (pageNo - 1) * pageSize;
         const paginatedPosts = _(testimonials).slice(startIndex).take(pageSize).value();
         setPaginatedTestimonials(paginatedPosts);
-     }
+    }
 
     return (
         <div className="px-4 sm:px-6 lg:px-8 min-h-[500px] min-w-full">
