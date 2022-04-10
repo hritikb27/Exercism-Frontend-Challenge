@@ -322,7 +322,7 @@ function TestimonialTable(): JSX.Element {
                                                 <TimeFormat date={testimonial.created_at} />
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium">
-                                                <a href={testimonial.track.slug} className="text-[#5C5589]">
+                                                <a href={String(testimonial.id)} className="text-[#5C5589]">
                                                     <ChevronRightIcon className="h-7 w-7" /> <span className="sr-only">, {testimonial.mentor.handle}</span>
                                                 </a>
                                             </td>
