@@ -3,7 +3,7 @@ import UnderLineVector from "../../assets/MainTitle/UnderLineVector.png"
 
 function MainTitle(): JSX.Element {
     return(
-        <div className="mt-10 flex flex-col items-center justify-center gap-4">
+        <div className="mt-6 flex flex-col items-center justify-center gap-3">
             <img src={Badge} />
             <div className="flex w-[50%] gap-5 justify-center">
                 <p className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-2">Testimonials I've left</p>

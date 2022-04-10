@@ -23,8 +23,10 @@ function App() {
 
   return (
       <div className="bg-white w-full mx-auto h-full">
-        <Header />
-        <div className="w-[75%] mx-auto ">
+        <div className="w-full border-b border-gray-200">
+          <Header />
+        </div>
+        <div className="max-w-[1440px] min-w-[80%] mx-auto ">
           <MainTitle />
           <TestimonialTable selectedTrack={track} setSelectedTrack={setTrack} />
         </div>

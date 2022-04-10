@@ -15,16 +15,34 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
       handlePagination(page)
   }
 
+  const handleNextPrev = (name:string) => {
+    let newPage:number;
+    if(name==='prev'){
+      setSelected((prev)=>{
+        newPage = prev-1
+        handlePagination(newPage);
+        return prev-1;
+      });
+    }
+    else if(name==='next'){
+      setSelected((prev)=>{
+        newPage = prev+1
+        handlePagination(newPage);
+        return prev+1;
+      });
+    }
+  }
+
   return (
-    <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
+    <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2">
       <div className="-mt-px w-0 flex-1 flex">
-        <a
-          href="#"
-          className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+        <button
+          className="border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          onClick={()=>handleNextPrev("prev")}
         >
           <ArrowNarrowLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
           Previous
-        </a>
+        </button>
       </div>
       <div className="hidden md:-mt-px md:flex">
         {
@@ -41,13 +59,13 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
       </div>
 
       <div className="-mt-px w-0 flex-1 flex justify-end">
-        <a
-          href="#"
-          className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+        <button
+          className="border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          onClick={()=>handleNextPrev("next")}
         >
           Next
           <ArrowNarrowRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
-        </a>
+        </button>
       </div>
     </nav>
   )

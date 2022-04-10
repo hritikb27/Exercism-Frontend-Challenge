@@ -12,8 +12,7 @@ import NavDots from "../../assets/Header/NavDots.png"
 
 function Header(): JSX.Element {
   return (
-    <div className="border-b border-gray-200">
-    <div className="px-4 sm:px-6 lg:px-8 bg-white max-w-[1440px] mx-auto h-[64px] flex justify-between items-center">
+    <div className="px-6 sm:px-6 lg:px-20 bg-white max-w-[1440px] min-w-[80%] mx-auto h-[64px] flex justify-between items-center">
         <img src="https://d24y9kuxp2d7l2.cloudfront.net/assets/icons/exercism-with-logo-black-b427c06c6a068ba9f391734115e4d22dfa876d1d.svg" className="cursor-pointer mr-2" />
         <section className="hidden lg:flex gap-2 xl:gap-6 text-sm">
             <div className="w-full flex items-center gap-1 cursor-pointer">
@@ -73,7 +72,6 @@ function Header(): JSX.Element {
                 <img src={NavDots} className=" h-5 " />
             </div>
         </section>
-    </div>
     </div>
   );
 }

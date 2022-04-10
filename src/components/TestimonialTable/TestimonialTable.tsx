@@ -250,12 +250,12 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
      }
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 max-h-[791px] min-h-[500px] ">
-            <div className="mt-8 flex flex-col">
-                <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full pt-2 pb-8 align-middle md:px-6 lg:px-8 ">
-                        <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-xl shadow-gray-200">
-                            <div className="min-w-full flex items-center h-[80px] border-b border-gray ">
+        <div className="px-4 sm:px-6 lg:px-8 min-h-[500px] min-w-full">
+            <div className="-mt-3 flex flex-col ">
+                <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+                    <div className="inline-block min-w-full pt-12 pb-8 align-middle md:px-6 lg:px-20 ">
+                        <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_25px_60px_25px_rgba(0,0,0,0.3)] shadow-gray-200">
+                            <div className="min-w-full flex items-center h-[70px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full ml-2">
                                     <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
                                     <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border border-[#2E57E8]"}>
@@ -274,7 +274,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
 
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
-                                        <tr key={testimonial.id} className={isLoading?"blur-md":""}>
+                                        <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] "}>
                                             <td>
                                                 <div className="w-11 ml-5">
                                                     <img src={testimonial.track.icon_url} className="size-cover" />
@@ -291,13 +291,16 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                                                     </div>
                                                 </div>
                                             </td>
-                                            <div className="truncate ml-20 text-gray-900 max-w-[400px] ">{testimonial.content}</div>
+
+                                            <td className="truncate ml-20 min-h-[60.5px] text-gray-900 max-w-[400px] ">
+                                               {testimonial.content}
+                                            </td>
 
                                             <td className="whitespace-nowrap px-3 text-sm text-gray-500">
                                                 <TimeFormat date={testimonial.created_at} />
                                             </td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium">
-                                                <a href="#" className="text-[#5C5589]">
+                                                <a href={testimonial.track.slug} className="text-[#5C5589]">
                                                     <ChevronRightIcon className="h-7 w-7" /> <span className="sr-only">, {testimonial.mentor.handle}</span>
                                                 </a>
                                             </td>
