@@ -10,8 +10,6 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
   const [selected, setSelected] = useState<number>(1);
   const [prevState, setPrevState] = useState<boolean>(false);
   const [nextState, setNextState] = useState<boolean>(true);
-  const nextBtn = useRef<HTMLButtonElement | null>();
-  const prevBtn = useRef<HTMLInputElement | null>(null);
 
   const handlePageClick = (page: number) => {
       setSelected(page);

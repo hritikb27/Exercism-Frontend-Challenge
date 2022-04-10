@@ -1,19 +1,28 @@
-import { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 
-const people = [
-  { id: 1, name: 'Sort by Most Recent' },
-  { id: 1, name: 'Sort by Oldest' },
+const sortItems = [
+  { id: 1, name: 'Sort by Most Recent', value:'newest_first' },
+  { id: 1, name: 'Sort by Oldest', value:'oldest_first' },
 ]
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function SortItems() {
-  const [selected, setSelected] = useState(people[0])
+type SortItemsType = {
+  orderFilter: string,
+  setOrderFilter: React.Dispatch<React.SetStateAction<string>>,
+}
+
+export default function SortItems({ orderFilter, setOrderFilter }: SortItemsType) {
+  const [selected, setSelected] = useState(sortItems[1])
+
+  useEffect(()=>{
+    setOrderFilter(selected.value);
+  },[selected])
 
   return (
     <Listbox value={selected} onChange={setSelected}>
@@ -35,21 +44,21 @@ export default function SortItems() {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-                {people.map((person) => (
+                {sortItems.map((item) => (
                   <Listbox.Option
-                    key={person.id}
+                    key={item.id}
                     className={({ active }) =>
                       classNames(
                         active ? 'text-white bg-indigo-600' : 'text-gray-900',
                         'cursor-default select-none relative py-2 pl-8 pr-4'
                       )
                     }
-                    value={person}
+                    value={item}
                   >
                     {({ selected, active }) => (
                       <>
                         <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                          {person.name}
+                          {item.name}
                         </span>
 
                         {selected ? (

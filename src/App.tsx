@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react"
+import React, { useState } from "react"
 import Header from "./components/Header/Header";
 import MainTitle from "./components/MainTitle/MainTitle";
 import TestimonialTable from "./components/TestimonialTable/TestimonialTable";
@@ -6,19 +6,14 @@ import { Track } from './components/SelectDropDown/SelectDropdown';
 
 
 function App() {
-
-
-  interface contextType {
-    [key: string]: any,
-    setTrack?: React.Dispatch<React.SetStateAction<Track>>,
-  }
-
   const [track, setTrack] = useState<Track>({
     title: 'string',
     icon_url: 'string',
     num_exercises: 1,
     slug: 'string',
   });
+
+  const [searchValue, setSearchValue] = useState<string>("");
 
   return (
       <div className="bg-white w-full mx-auto h-full">
@@ -27,7 +22,7 @@ function App() {
         </div>
         <div className="max-w-[1440px] min-w-[80%] mx-auto ">
           <MainTitle />
-          <TestimonialTable selectedTrack={track} setSelectedTrack={setTrack} />
+          <TestimonialTable selectedTrack={track} setSelectedTrack={setTrack} searchValue={searchValue} setSearchValue={setSearchValue} />
         </div>
       </div>
   );

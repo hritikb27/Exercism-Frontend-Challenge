@@ -1,8 +1,7 @@
 import SelectDropdown from "../SelectDropDown/SelectDropdown"
 import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
-import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 import SortItems from "../Sort/SortItems";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Track } from "../SelectDropDown/SelectDropdown";
 import Pagination from "../Pagination/Pagination";
 import _ from "lodash";
@@ -179,15 +178,16 @@ interface Testimonial {
 
 type TestimonialTableType = {
     selectedTrack: Track,
-    setSelectedTrack: React.Dispatch<React.SetStateAction<Track>>;
+    setSelectedTrack: React.Dispatch<React.SetStateAction<Track>>,
+    searchValue: string,
+    setSearchValue: React.Dispatch<React.SetStateAction<string>>,
 }
 
-function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableType): JSX.Element {
+function TestimonialTable({ selectedTrack, setSelectedTrack, searchValue, setSearchValue }: TestimonialTableType): JSX.Element {
     const [testimonials, setTestimonials] = useState<Testimonial[]>();
-    const [searchValue, setSearchValue] = useState<string>();
     const [exerciseFilter, setExerciseFilter] = useState<string>();
     const [trackFilter, setTrackFilter] = useState<string>();
-    const [orderFilter, setOrderFilter] = useState<string>();
+    const [orderFilter, setOrderFilter] = useState<string>("");
     const [pageCount, setPageCount] = useState<number[]>([1]);
     const [paginatedTestimonials, setPaginatedTestimonials] = useState<Testimonial[]>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -197,7 +197,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
         const getTestimonials = async () => {
             setIsLoading(true);
             setPaginatedTestimonials(people);
-            const Testimonials = await fetch("https://exercism.org/api/v2/hiring/testimonials")
+            await fetch("https://exercism.org/api/v2/hiring/testimonials")
                 .then(res => res.json())
                 .then(data => {
                     setTestimonials(data.testimonials.results)
@@ -215,14 +215,20 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
 
     // Fetch/Filter the data with the specified track selected by the user
     useEffect(() => {
-        setIsLoading(true)
         setPaginatedTestimonials(people);
         getFilteredTestimonials();
 
     }, [trackFilter])
+    
+    useEffect(() => {
+        setPaginatedTestimonials(people);
+        getFilteredTestimonials();
+
+    }, [orderFilter])
 
     const getFilteredTestimonials = async () => {
-         await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
+            setIsLoading(true);
+            await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
             .then(res => res.json())
             .then(data => {
                 setTestimonials(data.testimonials.results);
@@ -237,10 +243,18 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
 
     }
 
+    let timeoutID:any;
+    
+    // SetTimout gets cancelled when user again changes the search value under 1.5sec resulting in fewer api calls
+    const callFetcher = ()=> timeoutID = setTimeout(()=>{
+        getFilteredTestimonials();
+    },1500);
+
     const handleExerciseChange = (value: string) => {
         setSearchValue(value);
         setExerciseFilter(value);
-        getFilteredTestimonials();
+        clearTimeout(timeoutID);
+        callFetcher();
     }
 
      const handlePagination = (pageNo: number)=> {
@@ -266,7 +280,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                                     </div>
                                 </div>
                                 <div className="min-w-[30%] mr-4 min-h-full flex items-center">
-                                    <SortItems />
+                                    <SortItems orderFilter={orderFilter} setOrderFilter={setOrderFilter} />
                                 </div>
                             </div>
 
@@ -281,7 +295,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                                         animationDuration="2" 
                                     /></div>
                                     }
-                                    {paginatedTestimonials && paginatedTestimonials.map((testimonial,index) => (
+                                    {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
                                         <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] z-1"}>
                                             <td>
                                                 <div className="w-11 ml-5">
