@@ -161,7 +161,7 @@ const people = [
     },
 ]
 
-const pageSize = 10;
+const pageSize = 8;
 
 type mentor = {
     avatar_url: string,
@@ -267,7 +267,7 @@ function TestimonialTable(): JSX.Element {
         <div className="px-4 sm:px-6 lg:px-8 min-h-[500px] min-w-full">
             <div className="-mt-3 flex flex-col ">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
-                    <div className="inline-block min-w-full pt-12 pb-8 align-middle md:px-6 lg:px-20 ">
+                    <div className="inline-block min-w-full pt-12 pb-20 align-middle md:px-6 lg:px-20 ">
                         <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_25px_60px_25px_rgba(0,0,0,0.3)] shadow-gray-200">
                             <div className="min-w-full flex items-center h-[70px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full ml-2">
@@ -296,7 +296,7 @@ function TestimonialTable(): JSX.Element {
                                     /></div>
                                     }
                                     {paginatedTestimonials && paginatedTestimonials.map((testimonial) => (
-                                        <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] z-1"}>
+                                        <tr key={testimonial.id} className={isLoading?"blur-md":"max-h-[40px] z-1 hover:bg-[#F4F7FD]"}>
                                             <td>
                                                 <div className="w-11 ml-5">
                                                     <img src={testimonial.track.icon_url} className="size-cover" />

@@ -59,6 +59,7 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
             <Transition
               show={open}
               as={Fragment}
+              enter="ease-in-out"
               leave="transition ease-in duration-100"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"

@@ -66,8 +66,8 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
     <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2 h-[62px] ">
       <div className="-mt-px w-0 flex-1 flex">
         <button
-          className={prevState ? "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
-          "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-[#76709F]/60 bg-[#E0E0ED] "}
+          className={prevState ? "border-2 border-[#D5D8E4] h-[38px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 hover:border-gray-300" : 
+          "border-2 border-[#D5D8E4] h-[38px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-[#76709F]/60 bg-[#E0E0ED] "}
           onClick={()=>handleNextPrev('prev')}
           disabled={prevState? false : true}
           
@@ -92,8 +92,8 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
 
       <div className="-mt-px w-0 flex-1 flex justify-end">
         <button
-          className={nextState ? "border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
-          "border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-[#76709F] bg-[#E0E0ED] "}
+          className={nextState ? "border-2 border-[#D5D8E4] h-[38px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 hover:border-gray-300" : 
+          "border-2 border-[#D5D8E4] h-[38px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-[#76709F] bg-[#E0E0ED] "}
           onClick={()=>handleNextPrev('next')}
           disabled={nextState? false : true}
           
