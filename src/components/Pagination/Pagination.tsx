@@ -63,16 +63,16 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
   }
 
   return (
-    <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2">
+    <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2 h-[62px] ">
       <div className="-mt-px w-0 flex-1 flex">
         <button
-          className={prevState ? "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pl-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
-          "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pl-1 flex items-center justify-center text-sm font-medium text-[#76709F] bg-[#E0E0ED] "}
+          className={prevState ? "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
+          "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center justify-center text-sm font-medium text-[#76709F]/60 bg-[#E0E0ED] "}
           onClick={()=>handleNextPrev('prev')}
           disabled={prevState? false : true}
           
         >
-          <ArrowNarrowLeftIcon className={prevState ? "ml-3 h-5 w-5 text-gray-400" : "ml-3 h-5 w-5 text-[#76709F]"} aria-hidden="true" />
+          <ArrowNarrowLeftIcon className={prevState ? "ml-3 h-5 w-5 text-gray-400" : "ml-3 h-5 w-5 text-[#76709F]/60"} aria-hidden="true" />
           Previous
         </button>
       </div>
