@@ -276,7 +276,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                                     {isLoading &&
                                         <div className="relative min-w-full ml-[380%] blur-none z-10"><RotatingLines
                                         width="100"
-                                        strokeColor="#6495ED"
+                                        strokeColor="#5C5589"
                                         strokeWidth="1"
                                         animationDuration="2" 
                                     /></div>
