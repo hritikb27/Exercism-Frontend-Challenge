@@ -256,7 +256,7 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                             <div className="min-w-full flex items-center h-[80px] border-b border-gray ">
                                 <div className="flex items-center gap-2 w-full ml-2">
                                     <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
-                                    <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border-[#2E57E8]"}>
+                                    <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border border-[#2E57E8]"}>
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
                                             <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
                                         </span>

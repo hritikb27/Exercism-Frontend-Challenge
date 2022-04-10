@@ -39,7 +39,9 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
         const fetchTracks = await fetch('https://exercism.org/api/v2/tracks')
         .then(data=>data.json())
         .then(res=> {
+            console.log(res.tracks)
             setTracks(res.tracks)
+            setSelectedTrack(res.tracks[45])
         });
       }
 
@@ -78,7 +80,7 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
                     key={track.slug}
                     className={({ active }: any) =>
                       classNames(
-                        active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                        active ? 'text-[#3D3B45] bg-[#F0F3F9]' : 'text-[#3D3B45]',
                         'cursor-default select-none relative py-2 pl-3 pr-9'
                       )
                     }
@@ -88,6 +90,13 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
                       <>
                         <div className="flex items-center justify-between">
                             <div className="flex">
+                                <span className='relative w-[21px] h-[21px] rounded-full border border-[#5C5589] mr-4 flex justify-center items-center'>
+                                  
+                                    {selected && 
+                                      <span className='absolute w-[9px] h-[9px] rounded-full bg-[#5C5589] m-2 '></span>
+                                      }
+                                  
+                                </span>
                                 <img src={track.icon_url} alt="" className="flex-shrink-0 h-6 w-6 rounded-full" />
                                 <span
                                     className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
@@ -103,7 +112,7 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? 'text-white' : 'text-indigo-600',
+                              active ? 'text-[#3D3B45]' : 'text-indigo-600',
                               'absolute inset-y-0 right-0 flex items-center pr-4'
                             )}
                           >
