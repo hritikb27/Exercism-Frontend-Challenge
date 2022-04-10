@@ -7,159 +7,7 @@ import Pagination from "../Pagination/Pagination";
 import _ from "lodash";
 import TimeFormat from "./TimeFormat";
 import { RotatingLines } from  'react-loader-spinner'
-
-const people = [
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 1
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 2,
-        },
-        id: 2
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 3
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 4
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 5
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 6
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 7
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 8
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 9
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 10
-    },
-]
+import sampleTestimonialData from "../../utils/sampleTestimonialData";
 
 const pageSize = 8;
 
@@ -168,7 +16,7 @@ type mentor = {
     handle: string
 }
 
-interface Testimonial {
+type Testimonial = {
     content: string,
     created_at: string,
     mentor: mentor,
@@ -196,7 +44,7 @@ function TestimonialTable(): JSX.Element {
     useEffect(() => {
         const getTestimonials = async () => {
             setIsLoading(true);
-            setPaginatedTestimonials(people);
+            setPaginatedTestimonials(sampleTestimonialData);
             await fetch("https://exercism.org/api/v2/hiring/testimonials")
                 .then(res => res.json())
                 .then(data => {
@@ -213,20 +61,14 @@ function TestimonialTable(): JSX.Element {
         getTestimonials();
     }, [])
 
-    // Fetch/Filter the data with the specified track selected by the user
+    // Fetch/Filter the data with the specified track or order selected by the user
     useEffect(() => {
-        setPaginatedTestimonials(people);
         getFilteredTestimonials();
 
-    }, [trackFilter])
-    
-    useEffect(() => {
-        setPaginatedTestimonials(people);
-        getFilteredTestimonials();
-
-    }, [orderFilter])
+    }, [orderFilter, trackFilter])
 
     const getFilteredTestimonials = async () => {
+            setPaginatedTestimonials(sampleTestimonialData);
             setIsLoading(true);
             await fetch(`https://exercism.org/api/v2/hiring/testimonials?${trackFilter && `track=${trackFilter}`}&${exerciseFilter && `exercise=${exerciseFilter}`}&${orderFilter && `order=${orderFilter}`}`)
             .then(res => res.json())
