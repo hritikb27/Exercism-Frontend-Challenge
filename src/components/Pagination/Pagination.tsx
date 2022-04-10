@@ -1,5 +1,5 @@
 import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
-import { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type PaginationType = {
   pageCount: number[],
@@ -8,28 +8,59 @@ type PaginationType = {
 
 export default function Pagination({pageCount, handlePagination}:PaginationType) {
   const [selected, setSelected] = useState<number>(1);
-  console.log(pageCount)
+  const [prevState, setPrevState] = useState<boolean>(false);
+  const [nextState, setNextState] = useState<boolean>(true);
+  const nextBtn = useRef<HTMLButtonElement | null>();
+  const prevBtn = useRef<HTMLInputElement | null>(null);
 
   const handlePageClick = (page: number) => {
       setSelected(page);
       handlePagination(page)
   }
 
-  const handleNextPrev = (name:string) => {
-    let newPage:number;
-    if(name==='prev'){
-      setSelected((prev)=>{
-        newPage = prev-1
-        handlePagination(newPage);
-        return prev-1;
-      });
+  useEffect(()=>{
+    console.log((selected+1),pageCount.length)
+    if(selected-1<1){
+      setPrevState(false);
+      setNextState(true);
+      return;
     }
-    else if(name==='next'){
-      setSelected((prev)=>{
-        newPage = prev+1
-        handlePagination(newPage);
-        return prev+1;
-      });
+    else if((selected+1)>pageCount.length){
+      setNextState(false);
+      setPrevState(true);
+      return;
+    }else{
+      setNextState(true);
+      setPrevState(true);
+    }
+  },[selected])
+  
+  useEffect(()=>{
+    if(selected-1<selected){
+      setPrevState(false);
+      return;
+    }
+    else if(selected+1>pageCount.length){
+      setNextState(false);
+      return;
+    }
+    else{
+      setNextState(true);
+      setPrevState(true);
+    }
+  },[])
+
+  const handleNextPrev = (name:string) => {
+    if(name==='prev'){
+      setSelected(()=>{
+        handlePagination(selected-1);
+        return selected-1;
+      })
+    }else if(name==='next'){
+      setSelected(()=>{
+        handlePagination(selected+1);
+        return selected+1;
+      })
     }
   }
 
@@ -37,10 +68,13 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
     <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2">
       <div className="-mt-px w-0 flex-1 flex">
         <button
-          className="border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pr-1 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-          onClick={()=>handleNextPrev("prev")}
+          className={prevState ? "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pl-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
+          "border-2 border-[#D5D8E4] h-[30px] w-[95px] rounded-[5px] ml-4 pl-1 flex items-center justify-center text-sm font-medium text-[#76709F] bg-[#E0E0ED] "}
+          onClick={()=>handleNextPrev('prev')}
+          disabled={prevState? false : true}
+          
         >
-          <ArrowNarrowLeftIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ArrowNarrowLeftIcon className={prevState ? "ml-3 h-5 w-5 text-gray-400" : "ml-3 h-5 w-5 text-[#76709F]"} aria-hidden="true" />
           Previous
         </button>
       </div>
@@ -60,11 +94,14 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
 
       <div className="-mt-px w-0 flex-1 flex justify-end">
         <button
-          className="border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-          onClick={()=>handleNextPrev("next")}
+          className={nextState ? "border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" : 
+          "border-2 border-[#D5D8E4] h-[30px] w-[75px] rounded-[5px] mr-4 pl-1 flex items-center justify-center text-sm font-medium text-[#76709F] bg-[#E0E0ED] "}
+          onClick={()=>handleNextPrev('next')}
+          disabled={nextState? false : true}
+          
         >
           Next
-          <ArrowNarrowRightIcon className="ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ArrowNarrowRightIcon className={nextState ? "ml-3 h-5 w-5 text-gray-400" : "ml-3 h-5 w-5 text-[#76709F]"} aria-hidden="true" />
         </button>
       </div>
     </nav>

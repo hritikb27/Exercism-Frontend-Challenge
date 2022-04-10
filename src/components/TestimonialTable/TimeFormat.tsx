@@ -17,7 +17,6 @@ function TimeFormat({date}:TimeFormatType) {
     useEffect(()=>{
         const getTime = formatTimeAgo(date);
         setTime(getTime)
-        console.log(time)
     },[])
 
     return(
