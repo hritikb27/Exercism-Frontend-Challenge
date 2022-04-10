@@ -5,7 +5,9 @@ import SortItems from "../Sort/SortItems";
 import { useEffect, useState } from "react";
 import { Track } from "../SelectDropDown/SelectDropdown";
 import Pagination from "../Pagination/Pagination";
-import _ from "lodash"
+import _ from "lodash";
+import TimeFormat from "./TimeFormat";
+
 
 const people = [
     {
@@ -291,7 +293,9 @@ function TestimonialTable({ selectedTrack, setSelectedTrack }: TestimonialTableT
                                             </td>
                                             <div className="truncate ml-20 text-gray-900 max-w-[400px] ">{testimonial.content}</div>
 
-                                            <td className="whitespace-nowrap px-3 text-sm text-gray-500">{testimonial.created_at}</td>
+                                            <td className="whitespace-nowrap px-3 text-sm text-gray-500">
+                                                <TimeFormat date={testimonial.created_at} />
+                                            </td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium">
                                                 <a href="#" className="text-[#5C5589]">
                                                     <ChevronRightIcon className="h-7 w-7" /> <span className="sr-only">, {testimonial.mentor.handle}</span>
