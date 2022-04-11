@@ -1,29 +1,25 @@
-import moment from 'moment';
-import { useEffect, useState } from 'react';
+import moment from 'moment'
+import { useEffect, useState } from 'react'
 
 function formatTimeAgo(date: string) {
-    const dateFormat = moment(date).format("YYYY-MM-DD");
-    const timeAgo = moment(dateFormat).fromNow();
-    return timeAgo;
+  const dateFormat = moment(date).format('YYYY-MM-DD')
+  const timeAgo = moment(dateFormat).fromNow()
+  return timeAgo
 }
 
 type TimeFormatType = {
-    date: string,
+  date: string
 }
 
-function TimeFormat({date}:TimeFormatType) {
-    const [time, setTime] = useState<string>()
+function TimeFormat({ date }: TimeFormatType) {
+  const [time, setTime] = useState<string>()
 
-    useEffect(()=>{
-        const getTime = formatTimeAgo(date);
-        setTime(getTime)
-    },[])
+  useEffect(() => {
+    const getTime = formatTimeAgo(date)
+    setTime(getTime)
+  }, [])
 
-    return(
-        <span>
-            {time}
-        </span>
-    )
-};
+  return <span>{time}</span>
+}
 
-export default TimeFormat;
+export default TimeFormat
