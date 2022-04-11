@@ -40,6 +40,10 @@ Then we do some logic on data to get the count of the pages according to the pag
 
 And here, the first useEffect hook ends!
 
+## Data Fetching
+
+For now, I have just used plain fetch with useState and useEffect hooks as it might be an overkill to use SWR or react-query, but in future I'll replace fetch with a better & optimized data fetching method.
+
 ## Change on Track Filter and Order Sorting
 
 For fetching data according to the track filter and order sorting preferences provided by the user, we have an useEffect which will be run whenever trackFilter or orderFilter state is changed.
