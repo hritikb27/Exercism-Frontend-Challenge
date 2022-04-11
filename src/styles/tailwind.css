@@ -7,3 +7,9 @@
 body{
     font-family: 'Poppins', sans-serif;
 }
+
+@media screen and (min-height: 960px){
+    body{
+        overflow: hidden;
+    }
+}
