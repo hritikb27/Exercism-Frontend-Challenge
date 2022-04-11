@@ -115,7 +115,7 @@ function TestimonialTable(): JSX.Element {
       <div className='-mt-3 flex flex-col '>
         <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 '>
           <div className='inline-block min-w-full pt-12 pb-20 align-middle md:px-6 lg:px-20 '>
-            <div className=' overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_25px_60px_25px_rgba(0,0,0,0.3)] shadow-gray-200'>
+            <div className=' overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_30px_60px_30px_rgba(0,0,0,0.3)] shadow-gray-200'>
               <div className='min-w-full flex items-center h-[70px] border-b border-gray '>
                 <div className='flex items-center w-full ml-2'>
                   <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />

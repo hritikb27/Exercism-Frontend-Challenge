@@ -61,9 +61,9 @@ function Header(): JSX.Element {
           className='h-[28px] w-[28px] lg:w-[38px] cursor-pointer bg-no-repeat'
         />
 
-        <div className='w-[42px] bg-[#FFF4E3] flex items-center justify-center relative rounded-md shadow-xl shadow-gray-300 text-white cursor-pointer'>
+        <div className='w-[42px] h-[36px] bg-[#FFF4E3] flex items-center justify-center relative rounded-md shadow-xl shadow-gray-300 text-white cursor-pointer'>
           <img src={NotificationBell} className=' ' />
-          <span className='absolute top-[-10px] right-[-10px] py-[1.7px] px-[8px] bg-[#D85050] rounded-[50%] text-center text-white text-sm font-thin '>
+          <span className='absolute top-[-10px] right-[-10px] py-[1.7px] px-[8px] bg-[#D85050] rounded-[8px] text-center text-white text-sm font-thin '>
             2
           </span>
         </div>
