@@ -64,3 +64,8 @@ This will cause in fewer api calls as the api call will only be made when user h
 The 1.5 seconds setTimeOut duration is just for the demonstration purpose and we can change it according to our requirements.
 
 And after all the functions and logic in this component, we have all the JSX written inside the return call.
+
+Code Flow Diagram:
+![Exercism Frontend Challenge Diagram drawio](https://user-images.githubusercontent.com/86529959/162704438-79fb1dc6-938c-453a-ae76-a87be768b4f9.png)
+
+Draw.io Link: https://app.diagrams.net/#G1kwNt8jxI6IIg0UuDEoJMwTqJaRt1EAe4
