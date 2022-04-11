@@ -20,7 +20,7 @@ type SelectDropdownType = {
   setTrackFilter: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
-export default function SelectDropdown({ selectedTrack, setSelectedTrack, setTrackFilter }: SelectDropdownType) {
+export default function TracksDropdown({ selectedTrack, setSelectedTrack, setTrackFilter }: SelectDropdownType) {
   const [tracks, setTracks] = useState<Track[]>()
 
   useEffect(() => {
@@ -46,8 +46,8 @@ export default function SelectDropdown({ selectedTrack, setSelectedTrack, setTra
     <Listbox value={selectedTrack} onChange={(e) => handleTrackChange(e)}>
       {({ open }: any) => (
         <>
-          <div className='mt-1 relative min-w-[10%] max-w-[12%] '>
-            <Listbox.Button className='relative min-w-full bg-white shadow-sm pl-3 h-[60px] text-left cursor-default sm:text-sm'>
+          <div className='mt-1 relative min-w-[10%] max-w-[12%] mr-6 xl:mr-1'>
+            <Listbox.Button className='relative min-w-full bg-white pl-3 h-[60px] text-left cursor-default sm:text-sm border-none outline-none'>
               <span className='flex items-center'>
                 <img src={selectedTrack.icon_url} alt='' className='min-w-[30px] max-w-[50px] size-cover rounded-full' />
               </span>

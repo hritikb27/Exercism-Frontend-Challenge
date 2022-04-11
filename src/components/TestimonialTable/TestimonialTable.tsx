@@ -1,4 +1,4 @@
-import SelectDropdown from '../TracksDropDown/TracksDropdown'
+import TracksDropdown from '../TracksDropDown/TracksDropdown'
 import { SearchIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import SortItems from '../Sort/SortItems'
 import { useEffect, useState } from 'react'
@@ -19,6 +19,11 @@ type mentor = {
 type Testimonial = {
   content: string
   created_at: string
+  exercise?: {
+    icon_url: "https://dg8krxphbh767.cloudfront.net/exercises/gigasecond.svg"
+    slug: "gigasecond"
+    title: "Gigasecond"
+}
   mentor: mentor
   track: Track
   id: number
@@ -115,10 +120,10 @@ function TestimonialTable(): JSX.Element {
       <div className='-mt-3 flex flex-col '>
         <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 '>
           <div className='inline-block min-w-full pt-12 pb-20 align-middle md:px-6 lg:px-20 '>
-            <div className=' overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_30px_60px_30px_rgba(0,0,0,0.3)] shadow-gray-200'>
+            <div className=' overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_30px_60px_30px_rgba(79,114,205,0.3)] shadow-gray-200'>
               <div className='min-w-full flex items-center h-[70px] border-b border-gray '>
-                <div className='flex items-center w-full ml-2'>
-                  <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
+                <div className='flex items-center w-full ml-2 gap-1'>
+                  <TracksDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
                   <div
                     className={
                       !inputActive
@@ -154,32 +159,33 @@ function TestimonialTable(): JSX.Element {
                   )}
                   {paginatedTestimonials &&
                     paginatedTestimonials.map((testimonial) => (
-                      <tr key={testimonial.id} className={isLoading ? 'blur-md' : 'max-h-[40px] z-1 hover:bg-[#F4F7FD]'}>
+                      <tr key={testimonial.id} className={isLoading ? 'blur-lg' : 'max-h-[40px] hover:bg-[#F4F7FD]'}>
                         <td>
                           <div className='w-11 ml-5'>
                             <img src={testimonial.track.icon_url} className='size-cover' />
                           </div>
                         </td>
-                        <td className='whitespace-nowrap pl-4 pr-3 text-sm sm:pl-6'>
+                        <td className='whitespace-nowrap pl-4 pr-3 text-sm sm:pl-0'>
                           <div className='flex items-center'>
                             <div className='h-10 w-10 flex-shrink-0'>
                               <img className='h-10 w-10 rounded-full' src={testimonial.mentor.avatar_url} alt='' />
                             </div>
                             <div className='ml-4'>
-                              <div className='font-medium text-gray-900'>{testimonial.mentor.handle}</div>
+                              <div className='font-medium text-[#130B43]'>{testimonial.mentor.handle}</div>
+                              <p className='text-[#5C5589] '>on {testimonial.exercise?.title}</p>
                               {/* <div className="text-gray-500">{person.email}</div> */}
                             </div>
                           </div>
                         </td>
 
-                        <td className='truncate ml-20 min-h-[60.5px] text-gray-900 max-w-[400px] '>{testimonial.content}</td>
+                        <td className='truncate min-h-[60.5px] text-[#3F3A5A] max-w-[400px] font-normal'>{testimonial.content}</td>
 
-                        <td className='whitespace-nowrap px-3 text-sm text-gray-500'>
+                        <td className='whitespace-nowrap px-3 text-sm text-[#5C5589]'>
                           <TimeFormat date={testimonial.created_at} />
                         </td>
                         <td className='relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium'>
                           <a href={String(testimonial.id)} className='text-[#5C5589]'>
-                            <ChevronRightIcon className='h-7 w-7' /> <span className='sr-only'>, {testimonial.mentor.handle}</span>
+                            <ChevronRightIcon className='h-7 w-7 text-[#5C5589]' /> <span className='sr-only'>, {testimonial.mentor.handle}</span>
                           </a>
                         </td>
                       </tr>

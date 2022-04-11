@@ -60,7 +60,7 @@ export default function Pagination({ pageCount, handlePagination }: PaginationTy
   }
 
   return (
-    <nav className='border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 py-2 h-[62px] '>
+    <nav className='border-t-2 border-[#EAECF3] px-4 flex items-center justify-between sm:px-0 py-2 h-[62px] '>
       <div className='-mt-px w-0 flex-1 flex'>
         <button
           className={
@@ -98,14 +98,14 @@ export default function Pagination({ pageCount, handlePagination }: PaginationTy
               if (index >= 10) {
                 return <></>
               }
-              if (index >= pageCount.length - 3) {
+              if (index >= pageCount.length - 4) {
                 return (
                   <p
                     onClick={() => handlePageClick(page)}
                     className={
                       !(selected === page)
-                        ? 'h-[30px] w-[8%] border-[1px] border-[#D5D8E4] rounded text-gray-500 hover:bg-[#E1EBFF] hover:text-gray-700 hover:border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium'
-                        : 'h-[30px] w-[8%] border-[1px] rounded text-gray-500 bg-[#E1EBFF] text-gray-700 border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium'
+                        ? 'h-[30px] w-[10%] border-[1px] border-[#D5D8E4] rounded text-gray-500 hover:bg-[#E1EBFF] hover:text-gray-700 hover:border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium'
+                        : 'h-[30px] w-[10%] border-[1px] rounded text-gray-500 bg-[#E1EBFF] text-gray-700 border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium'
                     }
                   >
                     {page}
