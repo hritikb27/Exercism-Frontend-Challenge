@@ -77,7 +77,7 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
         </button>
       </div>
       <div className="hidden md:-mt-px md:flex">
-        {
+        {pageCount.length<10 ?
           pageCount.map(page=>{
             return <p
           onClick={()=>handlePageClick(page)}
@@ -86,6 +86,29 @@ export default function Pagination({pageCount, handlePagination}:PaginationType)
         >
           {page}
         </p>
+          }) : pageCount.map((page,index)=>{
+            if(index===9){
+              return <span>...</span>
+            }
+            if(index>=10){
+              return <></> ;
+            }
+            if(index>=(pageCount.length-3)){
+              return <p
+              onClick={()=>handlePageClick(page)}
+              className={!(selected === page) ? "h-[30px] w-[8%] border-[1px] border-[#D5D8E4] rounded text-gray-500 hover:bg-[#E1EBFF] hover:text-gray-700 hover:border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium" : 
+              "h-[30px] w-[8%] border-[1px] rounded text-gray-500 bg-[#E1EBFF] text-gray-700 border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium"}
+              >
+                {page}
+              </p>
+            }
+            return <p
+              onClick={()=>handlePageClick(page)}
+              className={!(selected === page) ? "h-[30px] w-[8%] border-[1px] border-[#D5D8E4] rounded text-gray-500 hover:bg-[#E1EBFF] hover:text-gray-700 hover:border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium" : 
+              "h-[30px] w-[8%] border-[1px] rounded text-gray-500 bg-[#E1EBFF] text-gray-700 border-[#76709F] border-t-2 px-4 mx-2 flex items-center justify-center text-sm font-medium"}
+            >
+              {page}
+            </p>
           })
         }
       </div>

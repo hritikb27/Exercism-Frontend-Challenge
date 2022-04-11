@@ -9,7 +9,7 @@ import TimeFormat from "./TimeFormat";
 import { RotatingLines } from  'react-loader-spinner'
 import sampleTestimonialData from "../../utils/sampleTestimonialData";
 
-const pageSize = 8;
+const pageSize = 9;
 
 type mentor = {
     avatar_url: string,
@@ -107,17 +107,17 @@ function TestimonialTable(): JSX.Element {
     }
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 min-h-[500px] min-w-full">
+        <div className="px-4 sm:px-6 lg:px-8 mx-auto min-w-[80%]">
             <div className="-mt-3 flex flex-col ">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
                     <div className="inline-block min-w-full pt-12 pb-20 align-middle md:px-6 lg:px-20 ">
-                        <div className="overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_25px_60px_25px_rgba(0,0,0,0.3)] shadow-gray-200">
+                        <div className=" overflow-hidden ring-1 ring-black ring-opacity-5 md:rounded-lg shadow-[5px_25px_60px_25px_rgba(0,0,0,0.3)] shadow-gray-200">
                             <div className="min-w-full flex items-center h-[70px] border-b border-gray ">
-                                <div className="flex items-center gap-2 w-full ml-2">
+                                <div className="flex items-center w-full ml-2">
                                     <SelectDropdown selectedTrack={selectedTrack} setSelectedTrack={setSelectedTrack} setTrackFilter={setTrackFilter} />
-                                    <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-3 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border border-[#2E57E8]"}>
+                                    <div className={!inputActive ? "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-1 rounded-[5px] px-6" : "relative flex bg-[#F0F3F9] min-w-[45%] max-h-[70%] h-[50px] ml-1 rounded-[5px] px-6 outline-none ring-1 ring-[#2E57E8] border border-[#2E57E8]"}>
                                         <span className="ml-3 absolute inset-y-0 left-0 flex items-center pr-2 pointer-events-none">
-                                            <SearchIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
+                                            <SearchIcon className="h-5 w-5 text-thin text-[#5C5589]" aria-hidden="true" />
                                         </span>
                                         <input type="text" value={searchValue} onChange={(e) => handleExerciseChange(e.target.value)} onFocus={()=>setInputActive(true)} onBlur={()=>setInputActive(false)} placeholder="Filter by exercise title" className="bg-[#F0F3F9] placeholder:text-[#5C5589] ml-6 w-full outline-none" />
                                     </div>

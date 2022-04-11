@@ -46,13 +46,13 @@ export default function SelectDropdown({selectedTrack, setSelectedTrack, setTrac
     <Listbox value={selectedTrack} onChange={(e)=>handleTrackChange(e)}>
       {({ open }: any) => (
         <>
-          <div className="mt-1 relative min-w-[12%] max-w-[8%] ">
-            <Listbox.Button className="relative min-w-full bg-white shadow-sm pl-3 pr-10 py-2 text-left cursor-default sm:text-sm">
+          <div className="mt-1 relative min-w-[10%] max-w-[12%] ">
+            <Listbox.Button className="relative min-w-full bg-white shadow-sm pl-3 h-[60px] text-left cursor-default sm:text-sm">
               <span className="flex items-center">
-                <img src={selectedTrack.icon_url} alt="" className="min-w-[30px] size-cover rounded-full" />
+                <img src={selectedTrack.icon_url} alt="" className="min-w-[30px] max-w-[50px] size-cover rounded-full" />
               </span>
-              <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <ChevronDownIcon className="h-5 w-5 text-thin text-gray-600" aria-hidden="true" />
+              <span className="absolute inset-y-0 ml-14 flex items-center pr-2 pointer-events-none">
+                <ChevronDownIcon className="h-5 w-5 text-thin text-[#5C5589]" aria-hidden="true" />
               </span>
             </Listbox.Button>
 
