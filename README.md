@@ -10,6 +10,10 @@ The major component of this project from where every core functionality starts w
 
 ## TestimonialTable.tsx
 
+This component has few child components which render from it.
+
+And this component drills down all the necessary states to it's children accordingly.
+
 Firstly we have declared a global const variable "pageSize", which defines how many columns the testimonial table will have.
 
 Then we have types for testimonial state.
@@ -58,3 +62,5 @@ If the user types something on the input field again under 1.5 seconds, the setT
 This will cause in fewer api calls as the api call will only be made when user has typed something and waits for 1.5 seconds to make a change again on input field.
 
 The 1.5 seconds setTimeOut duration is just for the demonstration purpose and we can change it according to our requirements.
+
+And after all the functions and logic in this component, we have all the JSX written inside the return call.
