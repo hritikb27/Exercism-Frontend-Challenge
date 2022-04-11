@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://hritikb27.github.io/Exercism-Frontend-Challenge",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.5.0",
@@ -30,6 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "lint": "eslint  --fix src/**/*.js",
     "format": "prettier src/**/*.tsx --write"
@@ -55,6 +58,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.6.2"
   }
 }

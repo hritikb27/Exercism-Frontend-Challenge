@@ -20,10 +20,10 @@ type Testimonial = {
   content: string
   created_at: string
   exercise?: {
-    icon_url: "https://dg8krxphbh767.cloudfront.net/exercises/gigasecond.svg"
-    slug: "gigasecond"
-    title: "Gigasecond"
-}
+    icon_url: 'https://dg8krxphbh767.cloudfront.net/exercises/gigasecond.svg'
+    slug: 'gigasecond'
+    title: 'Gigasecond'
+  }
   mentor: mentor
   track: Track
   id: number
@@ -185,7 +185,8 @@ function TestimonialTable(): JSX.Element {
                         </td>
                         <td className='relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium'>
                           <a href={String(testimonial.id)} className='text-[#5C5589]'>
-                            <ChevronRightIcon className='h-7 w-7 text-[#5C5589]' /> <span className='sr-only'>, {testimonial.mentor.handle}</span>
+                            <ChevronRightIcon className='h-7 w-7 text-[#5C5589]' />{' '}
+                            <span className='sr-only'>, {testimonial.mentor.handle}</span>
                           </a>
                         </td>
                       </tr>
