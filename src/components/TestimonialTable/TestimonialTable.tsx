@@ -153,8 +153,8 @@ function TestimonialTable(): JSX.Element {
               <table className='min-w-full divide-y divide-gray-300'>
                 <tbody className='divide-y divide-gray-200 bg-white'>
                   {isLoading && (
-                    <div className='relative min-w-full ml-[380%] blur-none z-10'>
-                      <RotatingLines width='100' strokeColor='#5C5589' strokeWidth='1' animationDuration='2' />
+                    <div className='relative min-w-full ml-[330%] blur-none z-10'>
+                      <RotatingLines width='120' strokeColor='#5C5589' strokeWidth='1' animationDuration='2' />
                     </div>
                   )}
                   {paginatedTestimonials &&

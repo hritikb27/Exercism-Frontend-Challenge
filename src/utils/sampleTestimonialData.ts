@@ -103,52 +103,7 @@ const sampleTestimonialData = [
             num_exercises: 1,
         },
         id: 7
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 8
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 9
-    },
-    {
-        content: "I got fantastic and timely feedback from him. He was super help...",
-        created_at: "2020-08-14T10:37:34.000Z",
-        mentor:{
-            avatar_url: "https://avatars2.githubusercontent.com/u/10456471?v=4",
-            handle: "elektronaut0815"
-        },
-        track:{
-            icon_url: "https://dg8krxphbh767.cloudfront.net/tracks/rust.svg",
-            slug: "rust",
-            title: "Rust",
-            num_exercises: 1,
-        },
-        id: 10
-    },
+    },   
 ]
 
 export default sampleTestimonialData;
