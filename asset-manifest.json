@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Exercism-Frontend-Challenge/static/css/main.7e44b7e9.css",
-    "main.js": "/Exercism-Frontend-Challenge/static/js/main.a1be181c.js",
+    "main.css": "/Exercism-Frontend-Challenge/static/css/main.30f6ae33.css",
+    "main.js": "/Exercism-Frontend-Challenge/static/js/main.6417f03f.js",
     "index.html": "/Exercism-Frontend-Challenge/index.html",
-    "main.7e44b7e9.css.map": "/Exercism-Frontend-Challenge/static/css/main.7e44b7e9.css.map",
-    "main.a1be181c.js.map": "/Exercism-Frontend-Challenge/static/js/main.a1be181c.js.map"
+    "main.30f6ae33.css.map": "/Exercism-Frontend-Challenge/static/css/main.30f6ae33.css.map",
+    "main.6417f03f.js.map": "/Exercism-Frontend-Challenge/static/js/main.6417f03f.js.map"
   },
   "entrypoints": [
-    "static/css/main.7e44b7e9.css",
-    "static/js/main.a1be181c.js"
+    "static/css/main.30f6ae33.css",
+    "static/js/main.6417f03f.js"
   ]
 }
