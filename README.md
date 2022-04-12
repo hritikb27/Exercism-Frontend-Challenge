@@ -71,7 +71,7 @@ And after all the functions and logic in this component, we have all the JSX wri
 
 # Code Flow Diagram:
 
-![Exercism Frontend Challenge Diagram drawio](https://user-images.githubusercontent.com/86529959/162704998-1c273515-ec48-4547-8101-728e8e7884fd.png)
+![Exercism Frontend Challenge Diagram drawio (1)](https://user-images.githubusercontent.com/86529959/162882554-f87ee126-93e1-42e0-b72a-c42a28622591.png)
 
 Draw.io Link: https://app.diagrams.net/#G1kwNt8jxI6IIg0UuDEoJMwTqJaRt1EAe4
 
