@@ -8,7 +8,7 @@ const sortItems = [
   { id: 1, name: 'Sort by Oldest', value: 'oldest_first' }
 ]
 
-function classNames(...classes: any) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
